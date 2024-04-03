@@ -1,23 +1,31 @@
-# Uasset Reader JS
-Read and extract informations of `.uasset` files from Unreal Engine in javascript.  
-[Here a Live Demo.](https://blueprintue.com/tools/uasset-reader.html)
+# UAsset Reader JS ( Modified for Node.js )
+Read and extract informations of `.uasset` files from Unreal Engine in javascript.
+This is a modified version to work with Node.js.
+Originally created by https://github.com/blueprintue/uasset-reader-js.
+
 
 ## How to use
-First you need to import `uasset-reader.min.js` in your page.
+###Installation
 ```js
-const file = document.getElementById("file-input").files[0];
-const buffer = await file.arrayBuffer();
-const bytes = new Uint8Array(buffer);
-new window.blueprintUE.uasset.ReaderUasset().analyze(bytes);
+npm i --save https://github.com/DasBander/uasset-reader-js.git
 ```
 
-### Main Methods
-#### analyze([bytes: Uint8Array]): Uasset
-This method read each byte to extract data from current `.uasset` file.
 
-## How to Dev
-`npm test` or `docker buildx bake test` to test and coverage  
-`npm run build` or `docker buildx bake build` to create dist js file minified  
-`npm run jsdoc` or `docker buildx bake jsdoc` to generate documentation  
-`npm run eslint` or `docker buildx bake lint` to run eslint  
-`npm run eslint:fix` to run eslint and fix files
+###Usage
+```js
+//Include uasset-reader-js
+const UAssetReader  = require('uasset-reader-js');
+
+//Define Asset Reader
+const AssetReader = new UAssetReader.ReaderUasset();
+
+//Load Asset into buffer
+const LoadedFile = await fs.readFile("<PathToAssetFile>");
+
+//Convert Buffer into Uint8 Byte Array
+const bytes = new Uint8Array(LoadedFile);
+
+//Read Data from UAsset. Returns complete asset data with Thumbnails.
+const Asset = AssetReader.analyze(bytes, false);
+```
+
