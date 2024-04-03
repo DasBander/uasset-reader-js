@@ -1018,4 +1018,4 @@ ReaderUasset.prototype.analyze = function analyze(bytes, saveHexView) {
 Object.freeze(ReaderUasset.prototype);
 Object.freeze(ReaderUasset);
 
-window.blueprintUE.uasset.ReaderUasset = ReaderUasset;
+module.exports.ReaderUasset = ReaderUasset;
